@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>【優先撮影エリアタイマー】#いなプーフォトフェス</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow" id="modeLabel">VIEW MODE</p>
+      <h1>【優先撮影エリアタイマー】#いなプーフォトフェス</h1>
+    </div>
+    <button id="copyView" class="ghost">閲覧URLをコピー</button>
+  </header>
+  <main>
+    <div class="clock" id="clock">現在時刻：--</div>
+    <div id="timers" class="grid"></div>
+    <p class="note">※ 閲覧ページでは操作できません。スタート・ストップは管理者ページのみ可能です。</p>
+    <section class="adminPanel adminOnly">
+      <h2 class="adminTitle">🔒 管理者操作画面</h2>
+      <div id="adminTimers" class="grid"></div>
+      <div class="result">
+        <label>閲覧用URL（このリンクを共有してください）
+          <div class="urlBox"><input id="viewUrl" readonly><button id="copyView2" type="button" class="ghost">コピー</button></div>
+        </label>
+        <label>管理者URL（管理者のみアクセス可能）
+          <div class="urlBox"><input id="adminUrl" readonly><button id="copyAdmin" type="button" class="ghost">コピー</button></div>
+        </label>
+      </div>
+    </section>
+  </main>
+  <footer>© 2024 いなプーフォトフェス</footer>
+  <template id="timerTemplate">
+    <article class="card">
+      <div class="cardHead">
+        <h2 class="title"></h2>
+        <span class="status"></span>
+      </div>
+      <div class="time"></div>
+      <div class="ring"><strong class="percent">0%</strong></div>
+      <div class="progress"><span></span></div>
+      <div class="statusText"></div>
+      <form class="settings adminOnly">
+        <input class="titleInput" maxlength="40" placeholder="タイマー名">
+        <input class="minInput" type="number" min="0" max="1440" placeholder="分">
+        <input class="secInput" type="number" min="0" max="59" placeholder="秒">
+        <button type="submit">保存</button>
+      </form>
+      <div class="actions adminOnly">
+        <button class="start">▶ スタート</button>
+        <button class="stop">Ⅱ ストップ</button>
+        <button class="reset">↻ リセット</button>
+      </div>
+    </article>
+  </template>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/client.js"></script>
+</body>
+</html>
