@@ -1,0 +1,51 @@
+{
+  "rooms": {
+    "O_RfbJHihY": {
+      "id": "O_RfbJHihY",
+      "adminKey": "DJiyBNZqDTRy_XeFBlBvRD6V9G0d76dB",
+      "createdAt": "2026-06-16T10:15:02.254Z",
+      "timers": [
+        {
+          "id": 1,
+          "title": "グループA",
+          "durationMs": 300000,
+          "remainingMs": 300000,
+          "running": false,
+          "endsAt": null
+        },
+        {
+          "id": 2,
+          "title": "グループB",
+          "durationMs": 300000,
+          "remainingMs": 300000,
+          "running": false,
+          "endsAt": null
+        },
+        {
+          "id": 3,
+          "title": "グループC",
+          "durationMs": 300000,
+          "remainingMs": 300000,
+          "running": false,
+          "endsAt": null
+        },
+        {
+          "id": 4,
+          "title": "グループD",
+          "durationMs": 300000,
+          "remainingMs": 300000,
+          "running": false,
+          "endsAt": null
+        },
+        {
+          "id": 5,
+          "title": "グループE",
+          "durationMs": 300000,
+          "remainingMs": 300000,
+          "running": false,
+          "endsAt": null
+        }
+      ]
+    }
+  }
+}
