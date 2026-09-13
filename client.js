@@ -69,6 +69,7 @@ async function api(timerId, action, body) {
 function makeCard(timer, controls = false) {
   const node = template.content.cloneNode(true);
   const card = node.querySelector('.card');
+  card.dataset.timerId = timer.id;
   const time = node.querySelector('.time');
   const progress = node.querySelector('.progress span');
   const ring = node.querySelector('.ring');
