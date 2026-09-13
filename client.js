@@ -109,12 +109,61 @@ function makeCard(timer, controls = false) {
   return node;
 }
 
-function render(room) {
-  timersEl.innerHTML = '';
-  room.timers.forEach(timer => timersEl.appendChild(makeCard(timer, false)));
+function updateExistingCard(card, timer) {
+  const time = card.querySelector('.time');
+  const progress = card.querySelector('.progress span');
+  const ring = card.querySelector('.ring');
+  const percent = card.querySelector('.percent');
 
+  const pctRemaining =
+    timer.durationMs > 0
+      ? Math.max(0, Math.min(100, timer.remainingMs / timer.durationMs * 100))
+      : 0;
+
+  const pctElapsed = Math.round(100 - pctRemaining);
+
+  card.querySelector('.title').textContent = timer.title;
+  card.querySelector('.status').textContent =
+    timer.running ? 'RUNNING' :
+    timer.remainingMs <= 0 ? 'FINISHED' : 'STOPPED';
+
+  card.querySelector('.statusText').textContent =
+    timer.running ? '実行中' :
+    timer.remainingMs <= 0 ? '終了' : '停止中';
+
+  time.textContent = fmt(timer.remainingMs);
+  progress.style.width = `${pctRemaining}%`;
+  ring.style.setProperty('--pct', `${pctElapsed}%`);
+  percent.textContent = `${pctElapsed}%`;
+
+  card.classList.toggle('done', timer.remainingMs <= 0);
+  card.classList.toggle('running', timer.running);
+}
+
+function render(room) {
+  // 閲覧画面
+  timersEl.innerHTML = '';
+  room.timers.forEach(timer => {
+    timersEl.appendChild(makeCard(timer, false));
+  });
+
+  // 管理画面
   if (isAdmin && adminTimersEl) {
-    adminTimersEl.innerHTML = '';
-    room.timers.forEach(timer => adminTimersEl.appendChild(makeCard(timer, true)));
+    room.timers.forEach(timer => {
+      let card = adminTimersEl.querySelector(
+        `.card[data-timer-id="${timer.id}"]`
+      );
+
+      // 最初だけカードを作る
+      if (!card) {
+        adminTimersEl.appendChild(makeCard(timer, true));
+        card = adminTimersEl.querySelector(
+          `.card[data-timer-id="${timer.id}"]`
+        );
+      }
+
+      // 2回目以降は表示部分だけ更新
+      updateExistingCard(card, timer);
+    });
   }
 }
