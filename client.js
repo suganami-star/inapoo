@@ -141,11 +141,13 @@ function updateExistingCard(card, timer) {
 }
 
 function render(room) {
-  // 閲覧画面
-  timersEl.innerHTML = '';
-  room.timers.forEach(timer => {
-    timersEl.appendChild(makeCard(timer, false));
-  });
+  // 閲覧ページのときだけ描画
+  if (!isAdmin) {
+    timersEl.innerHTML = '';
+    room.timers.forEach(timer => {
+      timersEl.appendChild(makeCard(timer, false));
+    });
+  }
 
   // 管理画面
   if (isAdmin && adminTimersEl) {
@@ -154,7 +156,6 @@ function render(room) {
         `.card[data-timer-id="${timer.id}"]`
       );
 
-      // 最初だけカードを作る
       if (!card) {
         adminTimersEl.appendChild(makeCard(timer, true));
         card = adminTimersEl.querySelector(
@@ -162,7 +163,6 @@ function render(room) {
         );
       }
 
-      // 2回目以降は表示部分だけ更新
       updateExistingCard(card, timer);
     });
   }
