@@ -8,8 +8,8 @@ const { nanoid } = require('nanoid');
 
 const PORT = process.env.PORT || 3000;
 const PUBLIC_BASE_URL = process.env.PUBLIC_BASE_URL || `http://localhost:${PORT}`;
-const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
-const DATA_FILE = path.join(DATA_DIR, 'rooms.json');
+const DATA_DIR = __dirname;
+const DATA_FILE = path.join(__dirname, 'rooms.json');
 
 fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, JSON.stringify({ rooms: {} }, null, 2));
