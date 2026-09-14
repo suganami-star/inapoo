@@ -78,7 +78,7 @@ button:hover, .primary:hover { transform: translateY(-1px); box-shadow: 0 10px 2
 .hidden { display: none; }
 .note { font-size: 14px; text-align: center; color: #42546d; font-weight: 800; }
 .error { color: var(--danger); }
-footer { text-align: center; padding: 0 0 24px; color: #586a80; font-weight: 800; }
+footer {display: none;}
 @media (max-width: 1120px) { .grid { grid-template-columns: repeat(2, minmax(220px, 1fr)); } .result { grid-template-columns: 1fr; } }
 @media (max-width: 620px) {
   body { background-attachment: scroll; }
